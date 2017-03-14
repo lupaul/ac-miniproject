@@ -1,0 +1,24 @@
+<h2> <%= @seminar.name %></h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>研討會地點</th>
+          <th>研討會分類</th>
+          <th>研討會時間</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr>
+              <td><%= @seminar.location %></td>
+              <td><%= @seminar.category %></td>
+              <td><%= @seminar.date %></td>
+              <td><%= link_to("Edit",edit_seminar_path) %></td>
+            </tr>
+
+      </tbody>
+    </table>
+    <div class="text-left">
+    <%= link_to("Back to index", seminars_path ) %>
+  </div>

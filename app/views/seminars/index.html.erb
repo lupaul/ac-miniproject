@@ -1,7 +1,21 @@
-<div class="row">
-  <% @seminars.each do |seminar| %>
-    <div class="col-xs-6 col-md-3">
+<table class="table">
+  <thead>
+    <tr>
+      <th>研討會名稱</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @seminars.each do |seminar| %>
+        <tr>
+          <td><%= link_to seminar.name, seminar_path(seminar) %></td>
+          <td> <%= link_to "Delete", seminar_path(seminar), method: :delete, data:{confirm: "Are U sure???"} %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
 
-    </div>
-  <% end %>
+<br>
+<div class="text-center">
+<%= link_to("Create",new_seminar_path) %>
 </div>
