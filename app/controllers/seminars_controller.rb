@@ -22,8 +22,11 @@ class SeminarsController < ApplicationController
 
   def update
     @seminar = Seminar.find(params[:id])
-    @seminar.update(seminar_params)
-    redirect_to seminar_path(@seminar)
+    if @seminar.update(seminar_params)
+      redirect_to seminar_path(@seminar)
+    else
+      render :edit
+    end
   end
 
   def destroy
