@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    flash[:notice] = "good morning!"
+    flash[:alert] = "good morning!"
   end
 
 end
