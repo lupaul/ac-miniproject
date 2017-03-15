@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :seminars
   has_many :attendees
+  has_many :seminar_relationships
+  has_many :participated_seminars, through: :seminar_relationships,
+            source: :seminar
 end
