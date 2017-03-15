@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
   def is_member_of?(seminar)
     participated_seminars.include?(seminar)
   end
+
+  def join!(seminar)
+    participated_seminars << seminar
+  end
+
+  def quit!(seminar)
+    participated_seminars.delete(seminar)
+  end
 end
