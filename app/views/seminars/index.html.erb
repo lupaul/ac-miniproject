@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>研討會名稱</th>
+      <th> Creator</th>
       <th>Delete</th>
     </tr>
   </thead>
@@ -9,6 +10,7 @@
     <% @seminars.each do |seminar| %>
         <tr>
           <td><%= link_to seminar.name, seminar_path(seminar) %></td>
+          <td><%= seminar.user.email %></td>
           <td> <%= link_to "Delete", seminar_path(seminar), method: :delete, data:{confirm: "Are U sure???"} %></td>
         </tr>
     <% end %>
