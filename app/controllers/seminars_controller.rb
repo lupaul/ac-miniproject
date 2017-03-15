@@ -9,6 +9,7 @@ class SeminarsController < ApplicationController
   end
   def create
     @seminar = Seminar.new(seminar_params)
+    @seminar.user = current_user
     @seminar.save
     redirect_to seminars_path
   end
