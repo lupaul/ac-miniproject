@@ -1,4 +1,5 @@
 <h2> <%= @seminar.name %></h2>
+<%= link_to("填寫報名",new_seminar_attendee_path(@seminar), class: "btn btn-default pull-right") %>
 
     <table class="table">
       <thead>
