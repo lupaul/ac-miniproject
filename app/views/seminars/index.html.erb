@@ -2,8 +2,10 @@
   <thead>
     <tr>
       <th>研討會名稱</th>
-      <th> Creator</th>
+      <th>Creator</th>
+  <% if current_user %>
       <th>Delete</th>
+  <% end %>
     </tr>
   </thead>
   <tbody>
@@ -11,7 +13,10 @@
         <tr>
           <td><%= link_to seminar.name, seminar_path(seminar) %></td>
           <td><%= seminar.user.email %></td>
-          <td> <%= link_to "Delete", seminar_path(seminar), method: :delete, data:{confirm: "Are U sure???"} %></td>
+          <td><% if current_user && current_user == seminar.user %>
+               <%= link_to "Delete", seminar_path(seminar), method: :delete, data:{confirm: "Are U sure???"} %>
+          <% end %>
+          </td>
         </tr>
     <% end %>
   </tbody>

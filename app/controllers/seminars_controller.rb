@@ -3,6 +3,7 @@ class SeminarsController < ApplicationController
 
   def index
     @seminars = Seminar.all
+
   end
   def new
     @seminar = Seminar.new
@@ -21,10 +22,16 @@ class SeminarsController < ApplicationController
 
   def edit
     @seminar = Seminar.find(params[:id])
+    if current_user != @seminar.user
+      redirect_to root_path, alert: "You have no permission!"
+    end
   end
 
   def update
     @seminar = Seminar.find(params[:id])
+    if current_user != @seminar.user
+      redirect_to root_path, alert: "You have no permission!!"
+    end
     if @seminar.update(seminar_params)
       redirect_to seminar_path(@seminar)
     else
@@ -34,6 +41,9 @@ class SeminarsController < ApplicationController
 
   def destroy
     @seminar = Seminar.find(params[:id])
+    if current_user != @seminar.user
+      redirect_to root_path, alert: "you have no permission!"
+    end
     @seminar.destroy
     redirect_to seminars_path
   end
