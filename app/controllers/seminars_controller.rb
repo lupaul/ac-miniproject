@@ -49,6 +49,32 @@ class SeminarsController < ApplicationController
     redirect_to seminars_path
   end
 
+  def join
+    @seminar = Seminar.find(params[:id])
+
+    if !current_user.is_member_of?(@seminar)
+      current_user.join!(@seminar)
+      flash[:notice] = "Join this action"
+    else
+      falsh[:warning] = "You are in this action"
+    end
+
+    redirect_to seminar_path(@seminar)
+  end
+
+  def quit
+    @seminar = Seminar.find(params[:id])
+
+    if current_user.is_member_of?(@seminar)
+      current_user.quit!(@seminar)
+      flash[:alert] = "Already this action"
+    else
+      flash[:alert] = "本來就不是怎麼退出！？"
+    end
+
+    redirect_to seminar_path(@seminar)
+  end
+
   private
 
   def seminar_params

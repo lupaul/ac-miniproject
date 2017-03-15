@@ -3,8 +3,10 @@
 <span class="pull-right">
   <% if current_user && current_user.is_member_of?(@seminar) %>
       <label class="label label-success">Is in this attendee</label>
+      <%= link_to("Quit this aciton", quit_seminar_path(@seminar), method: :post, class: "btn btn-default") %>
   <% else %>
       <label class="label label-warning">Not in this attendee</label>
+      <%= link_to("Join this action", join_seminar_path(@seminar), method: :post, class: "btn btn-default") %>
   <% end %>
 </span>
 <div class="group">

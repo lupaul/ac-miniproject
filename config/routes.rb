@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   root "seminars#index"
   resources :seminars do
+    member do
+      post :join
+      post :quit
+    end
     resources :attendees
+
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
