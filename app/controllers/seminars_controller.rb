@@ -43,7 +43,7 @@ class SeminarsController < ApplicationController
     @seminar = Seminar.find(params[:id])
     if current_user != @seminar.user
       redirect_to root_path, alert: "you have no permission!"
-    end
+    endµ
     @seminar.destroy
     redirect_to seminars_path
   end
