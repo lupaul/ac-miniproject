@@ -1,5 +1,12 @@
 <h2> <%= @seminar.name %></h2>
 <%= link_to("填寫報名",new_seminar_attendee_path(@seminar), class: "btn btn-default pull-right") %>
+<span class="pull-right">
+  <% if current_user && current_user.is_member_of?(@seminar) %>
+      <label class="label label-success">Is in this attendee</label>
+  <% else %>
+      <label class="label label-warning">Not in this attendee</label>
+  <% end %>
+</span>
 <div class="group">
     <table class="table">
       <thead>

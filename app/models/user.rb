@@ -8,4 +8,7 @@ class User < ActiveRecord::Base
   has_many :seminar_relationships
   has_many :participated_seminars, through: :seminar_relationships,
             source: :seminar
+  def is_member_of?(seminar)
+    participated_seminars.include?(seminar)
+  end
 end
