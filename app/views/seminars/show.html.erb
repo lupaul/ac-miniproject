@@ -1,6 +1,6 @@
 <h2> <%= @seminar.name %></h2>
 <%= link_to("填寫報名",new_seminar_attendee_path(@seminar), class: "btn btn-default pull-right") %>
-
+<div class="group">
     <table class="table">
       <thead>
         <tr>
@@ -20,6 +20,26 @@
 
       </tbody>
     </table>
+</div>
+<div class="group">
+  <table class="table">
+  <thead>
+    <tr>
+      <th>報名者</th>
+      <th>User Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attendees.each do |attendee| %>
+      <tr>
+        <td><%= attendee.name %></td>
+        <td><%= attendee.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
     <div class="text-left">
     <%= link_to("Back to index", seminars_path ) %>
   </div>

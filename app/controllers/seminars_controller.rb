@@ -17,6 +17,7 @@ class SeminarsController < ApplicationController
 
   def show
     @seminar = Seminar.find(params[:id])
+    @attendees = @seminar.attendees
 
   end
 
