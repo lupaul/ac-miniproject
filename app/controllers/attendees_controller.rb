@@ -11,6 +11,7 @@ class AttendeesController < ApplicationController
     @attendee.seminar = @seminar
     @attendee.user = current_user
     if @attendee.save
+      current_user.join!(@seminar)
       redirect_to seminar_path(@seminar)
     else
       render :new

@@ -5,14 +5,20 @@ class SeminarsController < ApplicationController
     @seminars = Seminar.all
 
   end
+
   def new
     @seminar = Seminar.new
   end
+
   def create
     @seminar = Seminar.new(seminar_params)
     @seminar.user = current_user
-    @seminar.save
-    redirect_to seminars_path
+    if @seminar.save
+      current_user.join!(@seminar)
+      redirect_to seminars_path
+    else
+      render :new
+    end
   end
 
   def show
