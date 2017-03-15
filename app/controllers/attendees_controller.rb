@@ -1,5 +1,5 @@
 class AttendeesController < ApplicationController
-  
+
   def new
     @seminar = Seminar.find(params[:seminar_id])
     @attendee = Attendee.new
@@ -14,6 +14,30 @@ class AttendeesController < ApplicationController
       redirect_to seminar_path(@seminar)
     else
       render :new
+    end
+  end
+
+  def edit
+    @seminar = Seminar.find(params[:seminar_id])
+    @attendee = @seminar.attendees.find(params[:id])
+
+  end
+
+  def update
+    @seminar = Seminar.find(params[:seminar_id])
+    @attendee = @seminar.attendees.find(params[:id])
+    if @attendee.update(attendee_params)
+      redirect_to seminar_path(@seminar)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @seminar = Seminar.find(params[:seminar_id])
+    @attendee = @seminar.attendees.find(params[:id])
+    if @attendee.destroy
+      redirect_to seminar_path(@seminar)
     end
   end
 
