@@ -1,0 +1,26 @@
+<div class="group">
+  <table class="table">
+  <thead>
+    <tr>
+      <th>研討會-活動名稱</th>
+      <th>舉辦活動日期</th>
+      <th>舉辦活動地點</th>
+      <th>舉辦活動分類</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= @conference.name %></td>
+        <td><%= @conference.date %></td>
+        <td><%= @conference.location %></td>
+        <td><%= @conference.category %></td>
+        <td><%= link_to "Edit",edit_seminar_conference_path(@seminar,@conference) %></td>
+        <td><%= link_to "Delete", seminar_conference_path(@seminar,@conference),method: :delete, data:{confirm: "Are U sure????"} %></td>
+      </tr>
+
+  </tbody>
+</table>
+</div>
+<div class="text-left">
+    <%= link_to("Back to Seminar id: #{@seminar.id} page show", seminar_path(@seminar) ) %>
+</div>

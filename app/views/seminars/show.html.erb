@@ -1,7 +1,7 @@
 <h2> <%= @seminar.name %></h2>
 <% if current_user %>
 <span class="pull-right">
-  <%= link_to("開啟報名研討會活動",new_seminar_action_path(@seminar), class: "btn btn-default pull-right") %>
+  <%= link_to("開啟報名研討會活動",new_seminar_conference_path(@seminar), class: "btn btn-default pull-right") %>
 
   <% if current_user && current_user.is_member_of?(@seminar) %>
       <label class="label label-success">Is in this attendee</label>
@@ -33,7 +33,29 @@
       </tbody>
     </table>
 </div>
-
-    <div class="text-left">
+<br><br><br>  
+<div class="group">
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Conference Name</th>
+      <th>創建者</th>
+      <th>研討會日期</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @conferences.each do |conference| %>
+      <tr>
+        <td><%= link_to conference.name, seminar_conference_path(@seminar,conference) %></td>
+        <td><%= conference.user.name %></td>
+        <td><%= conference.date %></td>
+        <td><%= link_to "Edit",edit_seminar_conference_path(@seminar,conference) %></td>
+        <td><%= link_to "Delete", seminar_conference_path(@seminar,conference),method: :delete, data:{confirm: "Are U sure????"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<div class="text-left">
     <%= link_to("Back to index", seminars_path ) %>
-  </div>
+</div>

@@ -1,6 +1,6 @@
-class CreateActions < ActiveRecord::Migration
+class CreateConferences < ActiveRecord::Migration
   def change
-    create_table :activitys do |t|
+    create_table :conferences do |t|
       t.string :name
       t.datetime :date
       t.string :location
