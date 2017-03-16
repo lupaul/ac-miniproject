@@ -1,0 +1,20 @@
+<div class="group">
+  <table class="table">
+  <thead>
+    <tr>
+      <th>報名者</th>
+      <th>User Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attendees.each do |attendee| %>
+      <tr>
+        <td><%= attendee.name %></td>
+        <td><%= attendee.user.name %></td>
+        <td><%= link_to "Edit",edit_seminar_attendee_path(@seminar,attendee) %></td>
+        <td><%= link_to "Delete", seminar_attendee_path(@seminar,attendee),method: :delete, data:{confirm: "Are U sure????"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

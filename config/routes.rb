@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post :join
       post :quit
     end
+    #get :test, on: :collection
     resources :attendees
 
   end
