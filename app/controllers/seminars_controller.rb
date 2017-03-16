@@ -62,7 +62,7 @@ class SeminarsController < ApplicationController
       current_user.join!(@seminar)
       flash[:notice] = "Join this action"
     else
-      falsh[:warning] = "You are in this action"
+      flash[:warning] = "You are in this action"
     end
 
     redirect_to seminar_path(@seminar)
