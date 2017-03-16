@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "seminars#index"
   resources :seminars do
+    resources :actions
     member do
       post :join
       post :quit
