@@ -1,0 +1,22 @@
+<div class="group">
+  <table class="table">
+  <thead>
+    <tr>
+      <th>研討會-活動名稱</th>
+      <th>舉辦活動日期</th>
+      <th>舉辦活動地點</th>
+      <th>舉辦活動分類</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attendees.each do |attendee| %>
+      <tr>
+        <td><%= attendee.name %></td>
+        <td><%= attendee.user.name %></td>
+        <td><%= link_to "Edit",edit_seminar_attendee_path(@seminar,attendee) %></td>
+        <td><%= link_to "Delete", seminar_attendee_path(@seminar,attendee),method: :delete, data:{confirm: "Are U sure????"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

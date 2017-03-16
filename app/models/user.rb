@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :seminars
+  has_many :actions
   has_many :attendees
   has_many :seminar_relationships
   has_many :participated_seminars, through: :seminar_relationships,
