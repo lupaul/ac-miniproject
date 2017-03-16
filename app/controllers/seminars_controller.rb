@@ -8,6 +8,7 @@ class SeminarsController < ApplicationController
 
   def new
     @seminar = Seminar.new
+    @photo = @seminar.build_seminarphoto
   end
 
   def create
@@ -23,22 +24,28 @@ class SeminarsController < ApplicationController
 
   def show
     @seminar = Seminar.find(params[:id])
+    @photo = @seminar.seminarphoto
     @conferences = @seminar.conferences
 
   end
 
   def edit
     @seminar = Seminar.find(params[:id])
-    if current_user != @seminar.user
-      redirect_to root_path, alert: "You have no permission!"
+    # if current_user != @seminar.user
+    #   redirect_to root_path, alert: "You have no permission!"
+    # end
+    if @seminar.seminarphoto.present?
+      @photo = @seminar.seminarphoto
+    else
+      @photo = @seminar.build_seminarphoto
     end
   end
 
   def update
     @seminar = Seminar.find(params[:id])
-    if current_user != @seminar.user
-      redirect_to root_path, alert: "You have no permission!!"
-    end
+    # if current_user != @seminar.user
+    #   redirect_to root_path, alert: "You have no permission!!"
+    # end
     if @seminar.update(seminar_params)
       redirect_to seminar_path(@seminar)
     else
@@ -48,11 +55,15 @@ class SeminarsController < ApplicationController
 
   def destroy
     @seminar = Seminar.find(params[:id])
-    if current_user != @seminar.user
-      redirect_to root_path, alert: "you have no permission!"
-    end
+    # if current_user != @seminar.user
+    #   redirect_to root_path, alert: "you have no permission!"
+    # else
+    #   @seminar.destroy
+    #   redirect_to seminars_path
+    # end
     @seminar.destroy
     redirect_to seminars_path
+
   end
 
   def join
@@ -84,6 +95,7 @@ class SeminarsController < ApplicationController
   private
 
   def seminar_params
-    params.require(:seminar).permit(:name, :date, :location, :category)
+    params.require(:seminar).permit(:name, :date, :location, :category,
+                                    seminarphoto_attributes: [:image, :id])
   end
 end
