@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root "seminars#index"
+  namespace :admin do
+    resources :seminars
+  end
   resources :seminars do
     resources :conferences
     member do
