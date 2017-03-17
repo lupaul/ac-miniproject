@@ -1,5 +1,6 @@
 class SeminarsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  # load_and_authorize_resource
 
   def index
     @seminars = Seminar.all

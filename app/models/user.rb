@@ -10,10 +10,23 @@ class User < ActiveRecord::Base
   has_many :participated_seminars, through: :seminar_relationships,
             source: :seminar
 
+  rolify :before_add => :before_add_method
+
+  def before_add_method(role)
+
+  end
+  after_create :assign_default_role
+
+  def assign_default_role
+    self.add_role(:user) if self.roles.blank?
+  end
+
   def admin?
     is_admin
   end
-  
+
+
+
   def is_member_of?(seminar)
     participated_seminars.include?(seminar)
   end
@@ -25,4 +38,6 @@ class User < ActiveRecord::Base
   def quit!(seminar)
     participated_seminars.delete(seminar)
   end
+
+
 end
