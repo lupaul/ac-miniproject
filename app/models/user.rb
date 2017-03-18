@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :seminar_relationships
   has_many :participated_seminars, through: :seminar_relationships,
             source: :seminar
-
+  has_many :roles, through: :users_roles
   rolify :before_add => :before_add_method
 
   def before_add_method(role)
