@@ -41,7 +41,7 @@ class Ability
       # basic_read_only #呼叫基本權限設定 Medthod
 
     elsif user.has_role?(:admin) #如果 role 為 admin
-      can [:read, :create, :update], [Seminar,Conference]
+      can [:read, :create, :update], [Seminar,Conference,User]
       # can :manage, :all #可管理所有資源
     elsif user.has_role?(:systemadmin) #如果 role 為 admin
       can :manage, :all #可管理所有資源

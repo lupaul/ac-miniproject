@@ -21,11 +21,19 @@ class User < ActiveRecord::Base
     self.add_role(:user) if self.roles.blank?
   end
 
+  def to_admin
+    self.remove_role :user
+    self.add_role :admin
+  end
+
+  def to_user
+    self.remove_role :admin
+    self.add_role :user
+  end
+
   def admin?
     is_admin
   end
-
-
 
   def is_member_of?(seminar)
     participated_seminars.include?(seminar)

@@ -6,6 +6,12 @@ Rails.application.routes.draw do
       resources :conferences
     end
 
+    resources :users do
+      member do
+        post :to_admin
+        post :to_user
+      end
+    end
   end
   resources :seminars do
     resources :conferences
