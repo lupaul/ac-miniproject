@@ -1,5 +1,6 @@
 class ConferencesController < ApplicationController
-  load_and_authorize_resource
+  skip_authorization_check only: :show
+  # load_and_authorize_resource
   def new
     @seminar = Seminar.find(params[:seminar_id])
     @conference = Conference.new

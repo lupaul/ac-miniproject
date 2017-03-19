@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   root "seminars#index"
   namespace :admin do
-    resources :seminars
+    resources :seminars do
+      resources :conferences
+    end
+
   end
   resources :seminars do
     resources :conferences

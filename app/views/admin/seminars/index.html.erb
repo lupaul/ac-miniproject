@@ -11,7 +11,7 @@
   <tbody>
     <% @seminars.each do |seminar| %>
         <tr>
-          <td><%= link_to seminar.name, seminar_path(seminar) %></td>
+          <td><%= link_to seminar.name, admin_seminar_path(seminar) %></td>
           <td><%= seminar.user.email %></td>
           <% if seminar.seminarphoto.present? %>
               <td><%= image_tag(seminar.seminarphoto.image.thumb.url, class:"thumbnail") %></td>
@@ -19,7 +19,11 @@
               <td><%= image_tag("htpp://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
           <% end %>
           <td>
-               <%= link_to "Delete", seminar_path(seminar), method: :delete, data:{confirm: "Are U sure???"} %>
+               <%= link_to "Edit", edit_admin_seminar_path(seminar), method: :delete, data:{confirm: "Are U sure???"} %>
+
+          </td>
+          <td>
+               <%= link_to "Delete", admin_seminar_path(seminar), method: :delete, data:{confirm: "Are U sure???"} %>
 
           </td>
         </tr>
@@ -29,6 +33,6 @@
 
 <br>
 <div class="text-center">
-<%= link_to "Create",new_seminar_path, class: "btn btn-danger" %>
+<%= link_to "Create",new_admin_seminar_path, class: "btn btn-danger" %>
 
 </div>

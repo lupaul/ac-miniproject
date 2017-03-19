@@ -35,13 +35,13 @@ class Ability
     #:create: 指 :new   和 :crate
 
     # if user.blank?     # not logged in
-    if user.blank? || user.has_role?(:user)  
+    if user.blank? || user.has_role?(:user)
       # can [:new, :create], Seminar #可以執行 Form Controller 裡的 new 和 create action
       # cannot [:new], Comment  #無法執行 Comment Controller 裡的 new action
-      basic_read_only #呼叫基本權限設定 Medthod
+      # basic_read_only #呼叫基本權限設定 Medthod
 
     elsif user.has_role?(:admin) #如果 role 為 admin
-      can [:read, :create, :update], Seminar
+      can [:read, :create, :update], [Seminar,Conference]
       # can :manage, :all #可管理所有資源
     elsif user.has_role?(:systemadmin) #如果 role 為 admin
       can :manage, :all #可管理所有資源

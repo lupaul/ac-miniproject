@@ -1,0 +1,15 @@
+<h2 class="text-center">開啟報名活動</h2>
+<div class="col-md-4 col-md-offset-4">
+  <%= simple_form_for [@seminar, @conference] do |f| %>
+    <div class="form-group">
+      <%= f.input :name, input_html: { class: "form-control"} %>
+      <%= f.input :date, input_html: { class: "form-control"} %>
+      <%= f.input :location, input_html: { class: "form-control"} %>
+      <%= f.input :category, input_html: { class: "form-control"} %>
+
+    </div>
+    <div class="form-actions">
+      <%= f.submit "Submit", disable_with: "Submiting...", class: "btn btn-primary"%>
+    </div>
+  <% end %>
+</div>

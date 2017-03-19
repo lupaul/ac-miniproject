@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   check_authorization unless: :devise_controller?
   
 
+
   rescue_from CanCan::AccessDenied do |exception|
   redirect_to root_url, alert:  exception.message #導向另一個頁面
   end
