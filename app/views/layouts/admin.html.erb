@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Conference 後台！</title>
+    <title>後台！</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
 </head>
 <body>
-    <div class="container">
-        <%= render "common/navbar" %>
-        <%= notice_message %>
-        <div class="row">
-            <div class="col-md-2">
-                <ul class="nav nav-pills nav-stacked" style"max-width: 300px">
-                    <li>  <%= link_to("Seminar", admin_seminars_path) %>
-                    </li>
-                    
-                </ul>
-            </div>
-            <div class="col-md-10">
-                <%= yield %>
-            </div>
-        </div>
-    </div>
+  <div class="container-fluid">
+    <%= render "common/navbar" %>
+    <%= render "common/flashes" %>
+    <%= yield %>
+  </div>
+  <%= render "common/footer" %>
 </body>
 </html>
