@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # root "seminars#index"
   root "organizations#index"
   namespace :admin do
+    resources :organizations
     resources :seminars do
       resources :conferences
     end
