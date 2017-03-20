@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_many :organizations
+  has_many :organization_ships
+  has_many :participated_organizations, through: :organization_ships,
+            source: :organization       
   has_many :seminars
   has_many :conferences
   has_many :attendees
