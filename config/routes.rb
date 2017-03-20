@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "seminars#index"
+  # root "seminars#index"
+  root "organizations#index"
   namespace :admin do
     resources :seminars do
       resources :conferences
