@@ -1,33 +1,34 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>研討會名稱</th>
-      <th>Creator</th>
-      <th>Photo</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="container">
+  <div class="row">
     <% @seminars.each do |seminar| %>
-        <tr>
-          <td><%= link_to seminar.name, seminar_path(seminar) %></td>
-          <td><%= seminar.user.email %></td>
-          <% if seminar.seminarphoto.present? %>
-              <td><%= image_tag(seminar.seminarphoto.image.thumb.url, class:"thumbnail") %></td>
-          <% else %>
-              <td><%= image_tag("htpp://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
-          <% end %>
-          <td>
-               <%= link_to "Delete", seminar_path(seminar), method: :delete, data:{confirm: "Are U sure???"} %>
+    <div class="col-md-6">
 
-          </td>
-        </tr>
+
+          <table class="table table-bordered">
+
+            <thead>
+              <tr>
+                <th>研討會名稱</th>
+                <th>Creator</th>
+                <th>Photo</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= link_to seminar.name, seminar_path(seminar) %></td>
+                <td><%= seminar.user.email %></td>
+                <% if seminar.seminarphoto.present? %>
+                    <td><%= image_tag(seminar.seminarphoto.image.thumb.url, class:"thumbnail") %></td>
+                <% else %>
+                    <td><%= image_tag("htpp://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
+                <% end %>
+
+              </tr>
+
+        </tbody>
+      </table>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-<div class="text-center">
-<%= link_to "Create",new_seminar_path, class: "btn btn-danger" %>
-
+  </div>
 </div>
