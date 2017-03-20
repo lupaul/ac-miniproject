@@ -13,15 +13,17 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :seminars do
-    resources :conferences
-    member do
-      post :join
-      post :quit
-    end
-    #get :test, on: :collection
-    resources :attendees
+  resources :organizations do
+    resources :seminars do
+      resources :conferences
+      member do
+        post :join
+        post :quit
+      end
+      #get :test, on: :collection
+      resources :attendees
 
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

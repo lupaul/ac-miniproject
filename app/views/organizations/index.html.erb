@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <% @organizations.each do |organization| %>
+    <div class="col-md-6">
+
+
+          <table class="table table-bordered">
+
+            <thead>
+              <tr>
+                <th>研討會名稱</th>
+                <th>Creator</th>
+                <th>Photo</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= link_to organization.name, organization_path(organization) %></td>
+                <td><%= organization.user.email %></td>
+                <% if organization.organizationphoto.present? %>
+                    <td><%= image_tag(organization.organization.image.thumb.url, class:"thumbnail") %></td>
+                <% else %>
+                    <td><%= image_tag("htpp://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
+                <% end %>
+
+              </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <% end %>
+  </div>
+</div>
