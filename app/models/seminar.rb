@@ -1,6 +1,6 @@
 class Seminar < ActiveRecord::Base
   resourcify
-
+  belongs_to :organization
   has_one :seminarphoto
   has_many :conferences
   has_many :attendees

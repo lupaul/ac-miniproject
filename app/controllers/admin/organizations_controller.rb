@@ -9,13 +9,14 @@ class Admin::OrganizationsController < ApplicationController
 
   def new
     @organization = Organization.new
+    @organizationphoto = @organization.build_organizationphoto
 
   end
 
   def create
-    @organization = Organization.new(organizaton_params)
+    @organization = Organization.new(organization_params)
     @organization.user = current_user
-    if @organizaiton.save
+    if @organization.save
       flash[:notice] = "Success created!"
       redirect_to admin_organizations_path
     else
@@ -31,6 +32,7 @@ class Admin::OrganizationsController < ApplicationController
   private
 
   def organization_params
-    params.require(:organization).permit(:name, :date, :location, :category)
+    params.require(:organization).permit(:name, :date, :location, :category,
+                                      organizationphoto_attributes: [:image, :id])
   end
 end
