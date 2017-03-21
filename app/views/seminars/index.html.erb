@@ -1,34 +1,26 @@
-<div class="container">
-  <div class="row">
-    <% @seminars.each do |seminar| %>
-    <div class="col-md-6">
-
-
-          <table class="table table-bordered">
-
-            <thead>
-              <tr>
-                <th>研討會名稱</th>
-                <th>Creator</th>
-                <th>Photo</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><%= link_to seminar.name, seminar_path(seminar) %></td>
-                <td><%= seminar.user.email %></td>
-                <% if seminar.seminarphoto.present? %>
-                    <td><%= image_tag(seminar.seminarphoto.image.thumb.url, class:"thumbnail") %></td>
-                <% else %>
-                    <td><%= image_tag("htpp://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
-                <% end %>
-
-              </tr>
-
-        </tbody>
-      </table>
-    </div>
-    <% end %>
+<div class="row">
+  <% @seminars.each do |seminar| %>
+  <div class="col-md-6">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>研討會名稱</th>
+              <th>舉辦時間</th>
+              <th>Photo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= link_to seminar.name, seminar_path(seminar) %></td>
+              <td><%= seminar.date %></td>
+              <% if seminar.seminarphoto.present? %>
+                  <td><%= image_tag(seminar.seminarphoto.image.thumb.url, class:"thumbnail") %></td>
+              <% else %>
+                  <td><%= image_tag("htpp://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
+              <% end %>
+            </tr>
+      </tbody>
+    </table>
   </div>
+  <% end %>
 </div>

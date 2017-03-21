@@ -5,6 +5,8 @@ class Admin::UsersController < ApplicationController
   load_and_authorize_resource
   def index
     @users = User.where('id >1 ')
+    @organizations = Organization.all
+    # @seminars = 
   end
 
   def to_admin

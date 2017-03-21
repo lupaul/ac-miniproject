@@ -23,10 +23,7 @@
               </a>
               <ul class="dropdown-menu">
                 <% if current_user && current_user.roles.first.name != "user" %>
-                    <li> <%= link_to("後台管理", admin_seminars_path) %></li>
-                <% end %>
-                <% if current_user && current_user.roles.first.name == "systemadmin" %>
-                    <li> <%= link_to("權限管理", admin_users_path) %></li>
+                    <li> <%= link_to("後台管理", admin_organizations_path) %></li>
                 <% end %>
                 <li> <%= link_to("Account Setting", edit_user_registration_path) %></li>
                 <li>  <%= link_to("Sign Out", destroy_user_session_path, method: :delete) %></li>

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   # root "seminars#index"
-  root "organizations#index"
-  namespace :admin do
+  root "seminars#index"
+  namespace :admin  do
     resources :organizations
     resources :seminars do
       resources :conferences
@@ -15,18 +15,18 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :organizations do
-    resources :seminars do
-      resources :conferences
-      member do
-        post :join
-        post :quit
-      end
-      #get :test, on: :collection
-      resources :attendees
-
+  resources :organizations
+  resources :seminars do
+    resources :conferences
+    member do
+      post :join
+      post :quit
     end
+    #get :test, on: :collection
+    resources :attendees
+
   end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

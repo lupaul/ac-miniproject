@@ -26,9 +26,14 @@ class Admin::SeminarsController < ApplicationController
     end
   end
 
-  # def edit
-  #   @seminar =
-  # end
+  def edit
+    @seminar = Seminar.find(params[:id])
+    if @seminar.seminarphoto
+      @photo = @seminar.seminarphoto
+    else
+      @photo = @seminar.build_seminarphoto
+    end
+  end
 
   private
 

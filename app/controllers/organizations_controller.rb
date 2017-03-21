@@ -7,5 +7,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
+    @photo = @organization.organizationphoto
+    # @seminars = @seminar.conferences
   end
 end

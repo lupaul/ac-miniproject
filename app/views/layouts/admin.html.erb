@@ -7,10 +7,25 @@
     <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container-fluid">
+  <div class="container">
     <%= render "common/adminnavbar" %>
     <%= render "common/flashes" %>
-    <%= yield %>
+
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked" style"max-width: 300px">
+                <li>  <%= link_to("All Organization", admin_organizations_path) %>
+                </li>
+                <li>  <%= link_to("All Seminar", admin_seminars_path) %></li>
+                <% if current_user && current_user.roles.first.name == "systemadmin" %>
+                    <li>  <%= link_to("所有User權限管理",admin_users_path) %></li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <%= yield %>
+        </div>
+    </div>
   </div>
   <%= render "common/footer" %>
 </body>
