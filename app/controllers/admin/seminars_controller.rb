@@ -13,6 +13,7 @@ class Admin::SeminarsController < ApplicationController
 
   def show
     @seminar = Seminar.find(params[:id])
+    @photo = @seminar.seminarphoto
     @conferences = @seminar.conferences
   end
 
@@ -34,6 +35,34 @@ class Admin::SeminarsController < ApplicationController
       @photo = @seminar.build_seminarphoto
     end
   end
+
+  def update
+    @seminar = Seminar.find(params[:id])
+    # if current_user != @seminar.user
+    #   redirect_to root_path, alert: "You have no permission!!"
+    # end
+    if @seminar.update(admin_seminar_params)
+      redirect_to admin_seminars_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @seminar = Seminar.find(params[:id])
+    # if current_user != @seminar.user
+    #   redirect_to root_path, alert: "you have no permission!"
+    # else
+    #   @seminar.destroy
+    #   redirect_to seminars_path
+    # end
+    @seminar.destroy
+    redirect_to admin_seminars_path
+
+  end
+
+
+
 
   private
 
