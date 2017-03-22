@@ -8,7 +8,10 @@ class Admin::SeminarsController < ApplicationController
   end
 
   def new
+    @organization_names = Organization.all
     @seminar = Seminar.new
+    @photo = @seminar.build_seminarphoto
+
   end
 
   def show
@@ -18,10 +21,13 @@ class Admin::SeminarsController < ApplicationController
   end
 
   def create
-    @seminar = Seminar.new(admin_seminar_params)
+    # @ogid = current_user.organization.id
+
+    @seminar = Seminar.new(seminar_params)
+    # @seminar.organization = Organization.find(current_user)
     @seminar.user = current_user
     if @seminar.save
-      redirect_to admin_seminars_path
+      redirect_to admin_organization_path(@seminar.organization_id)
     else
       render :new
     end
@@ -66,7 +72,7 @@ class Admin::SeminarsController < ApplicationController
 
   private
 
-  def admin_seminar_params
-    params.require(:seminar).permit(:name, :date, :location, :category)
+  def seminar_params
+    params.require(:seminar).permit(:name, :date, :location, :category, :organization_id, seminarphoto_attributes: [:image, :id])
   end
 end

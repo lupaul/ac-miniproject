@@ -1,26 +1,20 @@
 <div class="row">
   <% @seminars.each do |seminar| %>
-  <div class="col-md-6">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>研討會名稱</th>
-              <th>舉辦時間</th>
-              <th>Photo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><%= link_to seminar.name, seminar_path(seminar) %></td>
-              <td><%= seminar.date %></td>
-              <% if seminar.seminarphoto.present? %>
-                  <td><%= image_tag(seminar.seminarphoto.image.thumb.url, class:"thumbnail") %></td>
-              <% else %>
-                  <td><%= image_tag("htpp://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
-              <% end %>
-            </tr>
-      </tbody>
-    </table>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <% if seminar.seminarphoto.present? %>
+          <%= image_tag(seminar.seminarphoto.image.thumb.url, class:"thumbnail") %>
+      <% else %>
+          <%= image_tag("htpp://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+      <% end %>
+      <div class="caption">
+        <h3><%= link_to seminar.name,seminar_path(seminar) %></h3>
+        <br>
+        <p>研討會舉辦時間：</p>
+        <p> <%= seminar.date %></p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
   </div>
   <% end %>
 </div>

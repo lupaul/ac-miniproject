@@ -1,7 +1,7 @@
 <div class="row">
-  <% @organizations.each do |organization| %>
+
   <div class="col-md-12">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover">
           <thead>
             <tr>
               <th>協會名稱</th>
@@ -10,8 +10,9 @@
             </tr>
           </thead>
           <tbody>
+          <% @organizations.each do |organization| %>
             <tr>
-              <td><%= link_to organization.name, organization_path(organization) %></td>
+              <td><%= link_to organization.name, admin_organization_path(organization) %></td>
               <td><%= organization.user.email %></td>
               <% if organization.organizationphoto.present? %>
                   <td><%= image_tag(organization.organizationphoto.image.thumb.url, class:"thumbnail") %></td>
@@ -19,10 +20,11 @@
                   <td><%= image_tag("htpp://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
               <% end %>
             </tr>
+          <% end %>
       </tbody>
     </table>
   </div>
-  <% end %>
+
 </div>
 <div class="text-center">
 <%= link_to("Create", new_admin_organization_path, class: "btn btn-primary") %>

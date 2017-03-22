@@ -20,6 +20,9 @@
                 <% if current_user && current_user.roles.first.name == "systemadmin" %>
                     <li>  <%= link_to("所有User權限管理",admin_users_path) %></li>
                 <% end %>
+                <li>
+                  <%= link_to("返回前端", seminars_path) %>
+                </li>
             </ul>
         </div>
         <div class="col-md-10">

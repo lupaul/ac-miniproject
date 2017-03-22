@@ -1,25 +1,15 @@
-<h2> <%= @seminar.name %></h2>
-<% if current_user %>
+<h2> <%= @organization.name %></h2>
 <span class="pull-right">
-  <%= link_to("開啟報名研討會活動",new_seminar_conference_path(@seminar), class: "btn btn-default pull-right") %>
-
-  <% if current_user && current_user.is_member_of?(@seminar) %>
-      <label class="label label-success">Is in this attendee</label>
-      <%= link_to("Quit this aciton", quit_seminar_path(@seminar), method: :post, class: "btn btn-default") %>
-  <% else %>
-      <label class="label label-warning">Not in this attendee</label>
-      <%= link_to("Join this action", join_seminar_path(@seminar), method: :post, class: "btn btn-default") %>
-  <% end %>
+  <%= link_to("開啟報名研討會活動",new_admin_seminar_path, class: "btn btn-default pull-right") %>
 </span>
-<% end %>
 <div class="group">
     <table class="table">
       <thead>
         <tr>
-          <th>研討會照片</th>
-          <th>研討會地址</th>
-          <th>研討會分類</th>
-          <th>研討會成立時間</th>
+          <th>協會照片</th>
+          <th>協會地址</th>
+          <th>協會分類</th>
+          <th>協會成立時間</th>
         </tr>
       </thead>
       <tbody>
@@ -31,10 +21,10 @@
                     <%= image_tag("htpp://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
                 <% end %>
               </td>
-              <td><%= @seminar.location %></td>
-              <td><%= @seminar.category %></td>
-              <td><%= @seminar.date %></td>
-              <td><%= link_to("Edit",edit_seminar_path) %></td>
+              <td><%= @organization.location %></td>
+              <td><%= @organization.category %></td>
+              <td><%= @organization.date %></td>
+              <td><%= link_to("Edit",edit_admin_organization_path(@organization)) %></td>
             </tr>
 
       </tbody>
@@ -42,29 +32,24 @@
 </div>
 <br><br><br>
 <div class="group">
-  <table class="table">
-  <thead>
-    <tr>
-      <th>Conference Name</th>
-      <th>創建者</th>
-      <th>研討會日期</th>
-      <th>報名狀況</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @conferences.each do |conference| %>
-      <tr>
-        <td><%= link_to conference.name, seminar_conference_path(@seminar,conference) %></td>
-        <td><%= conference.user.name %></td>
-        <td><%= conference.date %></td>
-        <td>#</td>
-        <td><%= link_to "Edit",edit_seminar_conference_path(@seminar,conference) %></td>
-        <td><%= link_to "Delete", seminar_conference_path(@seminar,conference),method: :delete, data:{confirm: "Are U sure????"} %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-<div class="text-left">
-    <%= link_to("Back to index", seminars_path ) %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Seminar Name</th>
+          <th>發起人</th>
+          <th>研討會日期</th>
+          <th>報名狀況</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @seminars.each do |seminar| %>
+            <tr>
+              <td><%= seminar.name %></td>
+              <td><%= seminar.user.name %></td>
+              <td><%= seminar.date %></td>
+              <td><%= "報名狀況" %></td>
+              <td><%= link_to("Edit",edit_admin_seminar_path(seminar)) %></td> </tr>
+        <% end %>
+      </tbody>
+    </table>
 </div>
