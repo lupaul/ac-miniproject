@@ -47,8 +47,8 @@ class Admin::SeminarsController < ApplicationController
     # if current_user != @seminar.user
     #   redirect_to root_path, alert: "You have no permission!!"
     # end
-    if @seminar.update(admin_seminar_params)
-      redirect_to admin_seminars_path
+    if @seminar.update(seminar_params)
+      redirect_to admin_organization_path(@seminar.organization_id)
     else
       render :edit
     end
